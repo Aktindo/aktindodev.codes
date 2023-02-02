@@ -1,4 +1,4 @@
-import { Button } from "@nextui-org/react";
+import { Badge, Button } from "@nextui-org/react";
 import { FunctionComponent } from "react";
 import { FiGithub, FiTwitter, FiInstagram } from "react-icons/fi";
 
@@ -32,7 +32,8 @@ const Footer: FunctionComponent<FooterProps> = () => {
     <div className="absolute w-screen flex flex-shrink bottom-0 p-2">
       <div className="flex-1">
         <span className="opacity-50 font-fira m-3">
-          Aktindo &copy; {new Date().getFullYear()}
+          Aktindo &copy; {new Date().getFullYear()}{" "}
+          <Badge color="primary">BETA</Badge>
         </span>
       </div>
       <div className="flex">

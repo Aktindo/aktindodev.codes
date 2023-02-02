@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <NextUIProvider disableBaseline theme={theme}>
+    <NextUIProvider theme={theme}>
       {loading ? <Loading /> : <Component {...pageProps} />}
     </NextUIProvider>
   );
