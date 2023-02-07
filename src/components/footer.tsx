@@ -1,4 +1,5 @@
 import { Badge, Button } from "@nextui-org/react";
+import Link from "next/link";
 import { FunctionComponent } from "react";
 import { FiGithub, FiTwitter, FiInstagram } from "react-icons/fi";
 
@@ -38,15 +39,11 @@ const Footer: FunctionComponent<FooterProps> = () => {
       </div>
       <div className="flex">
         {footerNavLinks.map((link, i) => (
-          <Button
-            className="mr-2 bg-tertiary font-fira"
-            key={i}
-            href={link.link}
-            target="_blank"
-            auto
-          >
-            {link.name.toLowerCase() !== "blogs" ? link.icon : link.name}
-          </Button>
+          <Link href={link.link} target="_blank">
+            <Button className="mr-2 bg-tertiary font-fira" key={i} auto>
+              {link.name.toLowerCase() !== "blogs" ? link.icon : link.name}
+            </Button>
+          </Link>
         ))}
       </div>
     </div>

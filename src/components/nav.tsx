@@ -6,19 +6,22 @@ import { motion } from "framer-motion";
 
 const navLinks = [
   {
-    name: "Home",
+    name: "home",
     href: "/",
     icon: <FiHome size="24" />,
+    disabled: false,
   },
   {
-    name: "Portfolio",
+    name: "portfolio",
     href: "/portfolio",
     icon: <FiBox size="24" />,
+    disabled: true,
   },
   {
-    name: "Contact",
+    name: "contact",
     href: "/contact",
     icon: <FiMail size="24" />,
+    disabled: true,
   },
 ];
 
@@ -33,19 +36,20 @@ const Nav: FunctionComponent<NavProps> = ({ active }) => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex justify-center mt-10">
+      <div className="grid justify-start mr-10">
         {navLinks.map((link, i) => (
           <Link href={link.href} key={i}>
             <Button
-              className={`bg-tertiary font-fira flex items-center justify-center mr-2 text-lg border-opacity-0 ${
+              className={`mt-2 bg-tertiary font-fira opacity-80 flex items-center justify-center mr-2 text-xl border-opacity-0 ${
                 active == link.name.toLowerCase()
                   ? "rounded-l-sm border-opacity-100 transition-opacity ease-in duration-300 border-solid border-l-4 border-l-base-primary border-t-0 border-b-0 border-r-0"
                   : ""
               }`}
-              size="lg"
+              size="xl"
               auto
+              disabled={link.disabled}
             >
-              <span className="mr-2 mt-2">{link.icon}</span> {link.name}
+              <span className="mr-2 mt-2">{link.icon}</span> /{link.name}
             </Button>
           </Link>
         ))}{" "}

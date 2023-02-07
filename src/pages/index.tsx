@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Nav from "@/components/nav";
-import { Avatar, Badge, Button, Link, Tooltip } from "@nextui-org/react";
+import { Avatar, Badge, Button, Image, Link, Tooltip } from "@nextui-org/react";
 import Loading from "@/components/loading";
 import Footer from "@/components/footer";
 import { motion } from "framer-motion";
@@ -9,17 +9,20 @@ import { useEffect, useState } from "react";
 import { getPresence } from "@/handlers/api/presence";
 import { Activity } from "@/types/interfaces/Activity";
 import { namesSequence } from "@/utils/data/names";
-
+import { FiCalendar, FiClock } from "react-icons/fi";
 export default function Home() {
   const [activity, setActivity] = useState<Activity>({
     presence: "offline",
     status: null,
   });
+  const [time, setTime] = useState<string>("");
+  const [date, setDate] = useState<string>("");
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getPresence(activity, setActivity, setLoading);
-  }, [activity, loading]);
+  }, [loading]);
 
   const getStatusColor = (tooltip?: boolean) => {
     switch (activity.presence) {
@@ -35,6 +38,47 @@ export default function Home() {
     }
   };
 
+  const getStatusName = () => {
+    switch (activity.presence) {
+      case "online":
+        return "Online";
+      case "idle":
+        return "Idle";
+      case "dnd":
+        return "Do Not Disturb";
+
+      default:
+        return "Offline";
+    }
+  };
+
+  const getISTTime = () => {
+    const date = new Date();
+    const utc = date.getTime() + date.getTimezoneOffset() * 60000;
+    const ist = new Date(utc + 3600000 * 5.5);
+
+    let currentTime = ist.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: false,
+    });
+
+    let currentDate = ist.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+    });
+
+    setTime(currentTime);
+    setDate(currentDate);
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      getISTTime();
+    }, 1000);
+  }, []);
+
   return !loading ? (
     <>
       <Head>
@@ -43,8 +87,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="grid justify-center h-screen mx-5 tracking-wides">
+      <div className="flex justify-center items-center h-screen tracking-wides">
         <Nav active="home" />
+
         <div className="hero mb-20">
           <motion.div
             initial={{ opacity: 0 }}
@@ -52,37 +97,27 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeInOut" }}
           >
-            <div className="flex justify-center place-items-center">
+            <div className="flex justify-start place-items-center">
               <Tooltip
-                content={
-                  activity.presence![0].toUpperCase() +
-                  activity.presence!.slice(1)
-                }
+                content={getStatusName()}
                 rounded
                 color={getStatusColor()}
-                placement="bottomEnd"
+                placement="left"
               >
-                <Badge
-                  content=""
+                <Avatar
+                  className="mr-3 w-32 h-32"
+                  src={"/pfp.png"}
                   color={getStatusColor()}
-                  placement="bottom-right"
-                  shape="circle"
-                  variant="dot"
-                  size="xl"
-                >
-                  <Avatar
-                    className="mr-3 w-32 h-32"
-                    src={"/pfp.png"}
-                    color="primary"
-                  />
-                </Badge>
+                  bordered
+                  borderWeight="bold"
+                />
               </Tooltip>
 
               <div className="mt-3 max-w-2xl text-left">
-                <p className="text-3xl font-semibold tracking-normal">
+                <p className="md:text-3xl text-2xl font-medium tracking-normal">
                   Hi there!
                 </p>
-                <p className="text-3xl font-fira">
+                <p className="md:text-4xl text-3xl tracking-normal opacity-90 font-semibold">
                   I&apos;m{" "}
                   <TypeAnimation
                     speed={45}
@@ -102,43 +137,32 @@ export default function Home() {
               </div>
             </div>
             <div className="grid justify-center max-w-2xl mt-5">
-              <p className="text-xl font-normal opacity-70 font-fira">
-                I’m a 14y/o self-taught student developer based in the allies of
-                the internet. I like to work around with computer development
-                and such, specifically on web and micro machines. You can see
-                some of my work <Link href="/portfolio">here</Link>.
+              <p className="md:text-xl font-inter text-lg opacity-80 tracking-normal">
+                A 14y/o self-taught developer, aspiring to always learn new
+                things in this evolving world. However most of the time, I lack
+                the brain cells to do so :/
                 <br />
                 <br />
-                If you wanna get in touch, feel free to{" "}
-                <Link href="/contact">contact me</Link>. Otherwise, you can
-                always check out my socials linked at the bottom.
+                Also, feel free to get in touch anytime! I crave to hear new
+                ideas and how they can shape the internet.
               </p>
-              <Button className="w-20 font-fira mt-5 mx-auto text-lg" size="lg">
-                Explore
-              </Button>
             </div>
           </motion.div>
 
-          {/* <div className="grid justify-center opacity-90 max-w-2xl mt-5">
-            <p className="text-xl font-fira">
-              <span className="mr-2">
-                <FiCpu />
+          <div className="grid justify-start opacity-90 max-w-2xl mt-5">
+            <p className="text-xl font-fira flex items-center">
+              <span className="mr-2 flex items-center">
+                <FiCalendar size="20" />
               </span>
-              Developer at{" "}
-              <Link href="https://select-studios.com" target="_blank">
-                Select Studios
-              </Link>
+              {date} in New Delhi, India
             </p>
-            <p className="text-xl font-fira mt-2">
-              <span className="mr-2">
-                <FiCpu />
+            <p className="text-xl font-fira flex items-center">
+              <span className="mr-2 flex items-center">
+                <FiClock size="20" />
               </span>
-              Developer at{" "}
-              <Link href="https://select-studios.com" target="_blank">
-                Select Studios
-              </Link>
+              At {time}
             </p>
-          </div> */}
+          </div>
         </div>
       </div>
       <Footer />

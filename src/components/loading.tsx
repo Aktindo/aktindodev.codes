@@ -5,7 +5,7 @@ interface LoadingProps {}
 const Loading: React.FC<LoadingProps> = () => {
   return (
     <div className="grid items-center justify-center h-screen">
-      <Loader />
+      <Loader size="md" />
     </div>
   );
 };

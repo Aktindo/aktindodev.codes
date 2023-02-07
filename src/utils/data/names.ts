@@ -4,9 +4,9 @@ export const namesSequence = [
   2500,
   "Akshit Singla",
   2500,
-  "a Professional Dumbwit",
-  2500,
   "a Web Developer",
   2500,
-  "Akshit Singla",
+  "a Student",
+  2500,
+  "Akshit Singla"
 ];
