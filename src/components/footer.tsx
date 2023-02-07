@@ -39,7 +39,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
       </div>
       <div className="flex">
         {footerNavLinks.map((link, i) => (
-          <Link href={link.link} target="_blank">
+          <Link href={link.link} target="_blank" key={i}>
             <Button className="mr-2 bg-tertiary font-fira" key={i} auto>
               {link.name.toLowerCase() !== "blogs" ? link.icon : link.name}
             </Button>
