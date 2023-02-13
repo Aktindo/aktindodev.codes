@@ -1,8 +1,9 @@
 import { Button, theme } from "@nextui-org/react";
 import Link from "next/link";
-import { FunctionComponent } from "react";
-import { FiHome, FiBox, FiMail } from "react-icons/fi";
+import { FunctionComponent, useState } from "react";
+import { FiHome, FiBox, FiMail, FiMenu } from "react-icons/fi";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const navLinks = [
   {
@@ -30,31 +31,55 @@ interface NavProps {
 }
 
 const Nav: FunctionComponent<NavProps> = ({ active }) => {
+  const [navOpen, setNavOpen] = useState(true);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="grid justify-start mr-10">
-        {navLinks.map((link, i) => (
-          <Link href={link.href} key={i}>
-            <Button
-              className={`mt-2 bg-tertiary font-fira opacity-80 flex items-center justify-center mr-2 text-xl border-opacity-0 ${
-                active == link.name.toLowerCase()
-                  ? "rounded-l-sm border-opacity-100 transition-opacity ease-in duration-300 border-solid border-l-4 border-l-base-primary border-t-0 border-b-0 border-r-0"
-                  : ""
-              }`}
-              size="xl"
-              auto
-              disabled={link.disabled}
-            >
-              <span className="mr-2 mt-2">{link.icon}</span> /{link.name}
-            </Button>
-          </Link>
-        ))}{" "}
+    <div>
+      <div className="flex items-center md:hidden mt-0 mx-5">
+        <Image
+          className="rounded-full"
+          alt="Aktindo Logo"
+          src="/pfp.png"
+          width={55}
+          height={55}
+        />
+        <Button
+          className="ml-auto mb-5 justify-end"
+          auto
+          color="secondary"
+          size="md"
+          css={{ px: "$13" }}
+          onPress={() => setNavOpen(!navOpen)}
+        >
+          <FiMenu size="24" />
+        </Button>
       </div>
-    </motion.div>
+
+      <motion.div initial={false}>
+        <div
+          className={`md:grid ${
+            navOpen ? "grid" : "md:grid hidden"
+          } justify-end ml-2 md:mr-10`}
+        >
+          {navLinks.map((link, i) => (
+            <Link href={link.href} key={i}>
+              <Button
+                className={`ml-auto md:ml-0 mt-2 p-6 bg-tertiary font-fira opacity-80 flex items-center justify-center mr-3 text-xl border-opacity-0 ${
+                  active == link.name.toLowerCase()
+                    ? "md:rounded-l-sm md:border-r-0 border-l-0 border-opacity-100 transition-opacity ease-in duration-300 border-solid md:border-l-4 border-r-4 border-r-base-primary md:border-l-base-primary border-t-0 border-b-0 rounded-r-sm"
+                    : ""
+                }`}
+                size="md"
+                auto
+                disabled={link.disabled}
+              >
+                <span className="mr-2 mt-2">{link.icon}</span> /{link.name}
+              </Button>
+            </Link>
+          ))}
+        </div>
+      </motion.div>
+    </div>
   );
 };
 

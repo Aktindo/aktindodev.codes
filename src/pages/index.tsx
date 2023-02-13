@@ -21,7 +21,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getPresence(activity, setActivity, setLoading);
+    getPresence(setActivity);
+    setLoading(false);
   }, [loading]);
 
   const getStatusColor = (tooltip?: boolean) => {
@@ -87,17 +88,17 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex justify-center items-center h-screen tracking-wides">
+      <div className="grid md:flex justify-center mt-10 md:mt-0 md:items-center h-screen tracking-wides">
         <Nav active="home" />
 
-        <div className="hero mb-20">
+        <div className="hero mb-20 mx-5">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeInOut" }}
           >
-            <div className="flex justify-start place-items-center">
+            <div className="flex justify-center md:justify-start place-items-center">
               <Tooltip
                 content={getStatusName()}
                 rounded
@@ -113,7 +114,7 @@ export default function Home() {
                 />
               </Tooltip>
 
-              <div className="mt-3 max-w-2xl text-left">
+              <div className="mt-3 max-w-fit md:max-w-2xl text-left">
                 <p className="md:text-3xl text-2xl font-medium tracking-normal">
                   Hi there!
                 </p>
@@ -136,7 +137,7 @@ export default function Home() {
                 )}
               </div>
             </div>
-            <div className="grid justify-center max-w-2xl mt-5">
+            <div className="grid justify-center max-w-fit mx-5 lg:max-w-2xl mt-5 ">
               <p className="md:text-xl font-inter text-lg opacity-80 tracking-normal">
                 A 14y/o self-taught developer, aspiring to always learn new
                 things in this evolving world. However most of the time, I lack
@@ -149,20 +150,26 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <div className="grid justify-start opacity-90 max-w-2xl mt-5">
-            <p className="text-xl font-fira flex items-center">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="grid justify-center md:justify-start mx-2 max-w-2xl mt-5"
+          >
+            <p className="md:text-xl text-lg font-fira flex items-center opacity-90">
               <span className="mr-2 flex items-center">
                 <FiCalendar size="20" />
               </span>
               {date} in New Delhi, India
             </p>
-            <p className="text-xl font-fira flex items-center">
+            <p className="md:text-xl text-lg font-fira flex items-center opacity-90">
               <span className="mr-2 flex items-center">
                 <FiClock size="20" />
               </span>
               At {time}
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
       <Footer />

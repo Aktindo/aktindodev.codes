@@ -25,6 +25,8 @@ const theme = createTheme({
       background: "#242425",
       text: "#fff",
 
+      secondary: "#282A2D",
+
       link: "#2CA1C8",
     },
     space: {},
