@@ -62,20 +62,19 @@ const Nav: FunctionComponent<NavProps> = ({ active }) => {
           } justify-end ml-2 md:mr-10`}
         >
           {navLinks.map((link, i) => (
-            <Link href={link.href} key={i}>
-              <Button
-                className={`ml-auto md:ml-0 mt-2 p-6 bg-tertiary font-fira opacity-80 flex items-center justify-center mr-3 text-xl border-opacity-0 ${
-                  active == link.name.toLowerCase()
-                    ? "md:rounded-l-sm md:border-r-0 border-l-0 border-opacity-100 transition-opacity ease-in duration-300 border-solid md:border-l-4 border-r-4 border-r-base-primary md:border-l-base-primary border-t-0 border-b-0 rounded-r-sm"
-                    : ""
-                }`}
-                size="md"
-                auto
-                disabled={link.disabled}
-              >
-                <span className="mr-2 mt-2">{link.icon}</span> /{link.name}
-              </Button>
-            </Link>
+            <Button
+              disabled={link.disabled}
+              href={link.href}
+              className={`ml-auto md:ml-0 mt-2 p-6 bg-tertiary font-fira opacity-80 flex items-center justify-center mr-3 text-xl border-opacity-0 ${
+                active == link.name.toLowerCase()
+                  ? "md:rounded-l-sm md:border-r-0 border-l-0 border-opacity-100 transition-opacity ease-in duration-300 border-solid md:border-l-4 border-r-4 border-r-base-primary md:border-l-base-primary border-t-0 border-b-0 rounded-r-lg"
+                  : ""
+              }`}
+              size="md"
+              auto
+            >
+              <span className="mr-2 mt-2">{link.icon}</span> /{link.name}
+            </Button>
           ))}
         </div>
       </motion.div>

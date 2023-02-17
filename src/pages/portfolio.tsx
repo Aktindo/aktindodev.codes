@@ -13,7 +13,7 @@ const Portfolio: React.FC<PortfolioProps> = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Nav active="portfolio" />{" "}
+        <Nav active="portfolio" />
       </div>
     </>
   );
