@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "animate.css";
 import type { AppProps } from "next/app";
 
 import { createTheme, NextUIProvider, Text } from "@nextui-org/react";

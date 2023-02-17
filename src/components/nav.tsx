@@ -46,7 +46,7 @@ const Nav: FunctionComponent<NavProps> = ({ active }) => {
         <Button
           className="ml-auto mb-5 justify-end"
           auto
-          color="secondary"
+          color={navOpen ? "primary" : "secondary"}
           size="md"
           css={{ px: "$13" }}
           onPress={() => setNavOpen(!navOpen)}
@@ -65,9 +65,11 @@ const Nav: FunctionComponent<NavProps> = ({ active }) => {
             <Button
               disabled={link.disabled}
               href={link.href}
-              className={`ml-auto md:ml-0 mt-2 p-6 bg-tertiary font-fira opacity-80 flex items-center justify-center mr-3 text-xl border-opacity-0 ${
+              className={`ml-auto animate__animated animate__fadeInLeft animate__delay-${
+                i == 0 ? "0" : i == 1 ? "1" : "2"
+              }s md:ml-0 mt-2 p-6 bg-tertiary font-fira opacity-80 flex items-center justify-center mr-3 text-xl border-opacity-0 ${
                 active == link.name.toLowerCase()
-                  ? "md:rounded-l-sm md:border-r-0 border-l-0 border-opacity-100 transition-opacity ease-in duration-300 border-solid md:border-l-4 border-r-4 border-r-base-primary md:border-l-base-primary border-t-0 border-b-0 rounded-r-lg"
+                  ? "md:rounded-l-sm md:border-r-0 border-l-0 border-opacity-100 transition-opacity ease-in duration-300 border-solid md:border-l-4 border-r-4 rounded-r-sm border-r-base-primary md:border-l-base-primary border-t-0 border-b-0 md:rounded-r-lg"
                   : ""
               }`}
               size="md"
