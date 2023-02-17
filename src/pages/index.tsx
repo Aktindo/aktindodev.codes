@@ -141,7 +141,7 @@ export default function Home() {
               <p className="md:text-xl font-inter text-lg opacity-80 tracking-normal">
                 A 14y/o self-taught developer, aspiring to always learn new
                 things and help create open-source projects in this evolving
-                world. Ergo, I can't thank my goofy brain enough.
+                world. Ergo, I cannot thank my goofy brain enough.
                 <br />
                 <br />
                 Feel free to get in touch anytime! I like to hear new ideas and
