@@ -1,6 +1,14 @@
 import Head from "next/head";
 import Nav from "@/components/nav";
-import { Avatar, Badge, Button, Image, Link, Tooltip } from "@nextui-org/react";
+import {
+  Avatar,
+  Badge,
+  Button,
+  Card,
+  Image,
+  Link,
+  Tooltip,
+} from "@nextui-org/react";
 import Loading from "@/components/loading";
 import Footer from "@/components/footer";
 import { motion } from "framer-motion";
@@ -9,7 +17,7 @@ import { useEffect, useState } from "react";
 import { getPresence } from "@/handlers/api/presence";
 import { Activity } from "@/types/interfaces/Activity";
 import { namesSequence } from "@/utils/data/names";
-import { FiCalendar, FiClock } from "react-icons/fi";
+import { FiCalendar, FiClock, FiInstagram } from "react-icons/fi";
 export default function Home() {
   const [activity, setActivity] = useState<Activity>({
     presence: "offline",
@@ -137,15 +145,13 @@ export default function Home() {
                 )}
               </div>
             </div>
-            <div className="grid justify-cetner md:justify-start max-w-fit mx-5 lg:max-w-2xl mt-5 ">
+            <div className="grid justify-center md:justify-start max-w-fit mx-5 md:mx-0 lg:max-w-2xl mt-5 ">
               <p className="md:text-xl font-inter text-lg opacity-80 tracking-normal">
-                A 14y/o self-taught developer, aspiring to always learn new
-                things and help create open-source projects in this evolving
-                world. Ergo, I cannot thank my goofy brain enough.
+                Another 15y/o developer on the internet. Making full-stack
+                projects, websites and packages sometimes.
                 <br />
                 <br />
-                Feel free to get in touch anytime! I like to hear new ideas and
-                also get to know new people.
+                Feel free to hit me up for any project idea you may have!
               </p>
             </div>
           </motion.div>
@@ -172,6 +178,7 @@ export default function Home() {
           </motion.div>
         </div>
       </div>
+
       <Footer />
     </>
   ) : (
