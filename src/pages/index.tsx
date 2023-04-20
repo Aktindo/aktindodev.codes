@@ -106,7 +106,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeInOut" }}
           >
-            <div className="flex justify-center md:justify-start place-items-center">
+            <div className="grid md:flex justify-center md:justify-start place-items-center">
               <Tooltip
                 content={getStatusName()}
                 rounded

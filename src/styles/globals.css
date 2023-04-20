@@ -15,3 +15,7 @@ body {
 .nextui-button {
   @apply shadow-xl;
 }
+
+p {
+  @apply tracking-normal font-sans;
+}
