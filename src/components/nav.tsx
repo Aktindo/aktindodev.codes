@@ -31,7 +31,7 @@ interface NavProps {
 }
 
 const Nav: FunctionComponent<NavProps> = ({ active }) => {
-  const [navOpen, setNavOpen] = useState(true);
+  const [navOpen, setNavOpen] = useState(false);
 
   return (
     <div>

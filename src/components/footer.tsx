@@ -1,4 +1,4 @@
-import { Badge, Button } from "@nextui-org/react";
+import { Badge, Button, Tooltip } from "@nextui-org/react";
 import Link from "next/link";
 import { FunctionComponent } from "react";
 import { FiGithub, FiTwitter, FiInstagram } from "react-icons/fi";
@@ -30,14 +30,19 @@ const footerNavLinks = [
 
 const Footer: FunctionComponent<FooterProps> = () => {
   return (
-    <div className="absolute mt-5 md:mt-0 w-screen flex flex-shrink bottom-0 p-2">
+    <div className="md:absolute mt-5 md:mt-0 w-screen flex flex-shrink md:bottom-0 p-2">
       <div className="flex-1">
         <span className="opacity-50 font-fira m-3">
           Aktindo &copy; {new Date().getFullYear()}{" "}
-          <Badge color="primary">BETA</Badge>
+          <Tooltip
+            color="invert"
+            content="Some components/pages are yet to come."
+          >
+            <Badge color="primary">BETA</Badge>
+          </Tooltip>
         </span>
       </div>
-      <div className="flex">
+      <div className="hidden md:flex">
         {footerNavLinks.map((link, i) => (
           <Link href={link.link} target="_blank" key={i}>
             <Button className="mr-2 bg-tertiary font-fira" key={i} auto>
