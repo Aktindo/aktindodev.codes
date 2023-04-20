@@ -30,7 +30,7 @@ const footerNavLinks = [
 
 const Footer: FunctionComponent<FooterProps> = () => {
   return (
-    <div className="absolute w-screen flex flex-shrink bottom-0 p-2">
+    <div className="absolute mt-5 md:mt-0 w-screen flex flex-shrink bottom-0 p-2">
       <div className="flex-1">
         <span className="opacity-50 font-fira m-3">
           Aktindo &copy; {new Date().getFullYear()}{" "}
