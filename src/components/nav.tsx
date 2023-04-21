@@ -64,7 +64,7 @@ const Nav: FunctionComponent<NavProps> = ({ active }) => {
           } justify-end ml-2 md:mr-10`}
         >
           {navLinks.map((link, i) => (
-            <Link href={link.href}>
+            <Link key={i} href={link.href}>
               <Button
                 disabled={link.disabled}
                 className={`ml-auto animate__animated animate__fadeInLeft animate__delay-${
