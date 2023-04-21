@@ -74,8 +74,8 @@ const Footer: FunctionComponent<FooterProps> = () => {
         <Dropdown>
           <Dropdown.Button color="secondary">Socials</Dropdown.Button>
           <Dropdown.Menu aria-label="Social Handles" className="bg-secondary">
-            {footerNavLinks.map((link) => (
-              <Dropdown.Item icon={link.icon}>
+            {footerNavLinks.map((link, i) => (
+              <Dropdown.Item key={i} icon={link.icon}>
                 <Link className="text-white" href={link.link}>
                   {link.name}
                 </Link>
