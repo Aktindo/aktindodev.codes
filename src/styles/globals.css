@@ -4,7 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;700&display=swap");
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif !important;
   font-smooth: inherit;
 }
 

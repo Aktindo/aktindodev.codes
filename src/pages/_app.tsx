@@ -23,10 +23,10 @@ const theme = createTheme({
       primarySolidContrast: "$white",
       primaryShadow: "#6dc2df",
 
-      background: "#242425",
+      background: "#131313",
       text: "#fff",
 
-      secondary: "#282A2D",
+      secondary: "#1B1B1B",
 
       link: "#2CA1C8",
     },

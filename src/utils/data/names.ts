@@ -8,5 +8,5 @@ export const namesSequence = [
   2500,
   "a Student",
   2500,
-  "Akshit Singla"
+  "Aktindo",
 ];
