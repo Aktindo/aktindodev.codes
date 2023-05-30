@@ -185,10 +185,11 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-10 flex justify-center">
-              {socialLinks.map((link) => (
+              {socialLinks.map((link, key) => (
                 <Button
                   icon={link.icon}
                   size="lg"
+                  key={key}
                   as={Link}
                   href={link.link}
                   target="_blank"
