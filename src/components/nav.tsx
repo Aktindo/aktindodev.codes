@@ -32,7 +32,7 @@ interface NavProps {
 }
 
 const Nav: FunctionComponent<NavProps> = ({ active }) => {
-  const [navOpen, setNavOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(true);
   const router = useRouter();
 
   return (
@@ -59,17 +59,17 @@ const Nav: FunctionComponent<NavProps> = ({ active }) => {
 
       <motion.div initial={false}>
         <div
-          className={`md:grid ${
-            navOpen ? "grid" : "md:grid hidden"
-          } justify-end ml-2 md:mr-10`}
+          className={`md:flex ${
+            navOpen ? "grid" : "md:flex hidden"
+          }  ml-2 md:mr-10 mt-10`}
         >
           {navLinks.map((link, i) => (
             <Link key={i} href={link.href}>
               <Button
                 disabled={link.disabled}
-                className={`ml-auto animate__animated animate__fadeInLeft animate__delay-${
+                className={`ml-auto animate__animated animate__fadeInUp animate__delay-${
                   i == 0 ? "0" : i == 1 ? "1" : "2"
-                }s md:ml-0 mt-2 p-6 bg-tertiary font-fira opacity-80 flex items-center justify-center mr-3 text-xl border-opacity-0 ${
+                }s md:ml-0 mt-2 p-6 bg-secondary font-fira opacity-80 flex items-center justify-center mr-3 text-xl border-opacity-0 ${
                   active == link.name.toLowerCase()
                     ? "md:rounded-l-sm md:border-r-0 border-l-0 border-opacity-100 transition-opacity ease-in duration-300 border-solid md:border-l-4 border-r-4 rounded-r-sm border-r-base-primary md:border-l-base-primary border-t-0 border-b-0 md:rounded-r-lg"
                     : ""
